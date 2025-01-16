@@ -1,0 +1,73 @@
+.rotating-parent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transform: rotate(45deg);
+    transform-origin: center;
+    display: flex;
+    justify-content: center;
+    display: none;
+    align-items: center;
+    animation: deg 10s linear forwards;
+  }
+  
+  @keyframes deg {
+    0%{
+        display: flex;
+    }
+    100%{
+        display: flex;
+    }
+  }
+
+  /* Div Filha com animação de clip-path */
+  .animated-div {
+    position: relative;
+    width: 100%;
+    padding:1000px;
+    height: 100%;
+    background-color: green;
+    display: none;
+    animation: clip-diagonal 10s linear forwards;
+  }
+  
+  /* Animação com clip-path */
+  @keyframes clip-diagonal {
+    0% {
+        display: flex;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    100% {
+        display: flex;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+  }
+
+  .teste-animate{
+    width: 0px;
+    height: 0px;
+    box-shadow: 510px 400px 10px 50px;
+  }
+  .teste-animate2{
+    width: 0px;
+    height: 0px;
+    box-shadow: 610px 400px 10px 50px;
+  }
+  .teste-animate3{
+    width: 0px;
+    height: 0px;
+    box-shadow: 710px 400px 10px 50px;
+  }
+  .teste-animate4{
+    width: 0px;
+    height: 0px;
+    box-shadow: 810px 400px 10px 50px;
+  }
+  .teste-animate5{
+    width: 50px;
+    height: 50px;
+    box-shadow: 900px 400px 10px;
+    border-radius: 38px;
+  }

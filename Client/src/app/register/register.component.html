@@ -1,0 +1,42 @@
+<section class="flex flex-col items-center">
+    <h2>Registrar novo usuário</h2>
+    <form #registerForm="ngForm" id="registerForm" class="flex flex-col items-center" action="">
+        <div class="inputGroup">
+            <input type="text" name="userName" id="nome">
+            <label for="userName">Nome</label>
+        </div>
+        <div class="inputGroup">
+            <input type="text" ngModel="" name="password" id="">
+            <label for="password">Senha</label>
+        </div>
+        <div class="inputGroup"> 
+            <input type="date" ngModel="" name="age" id="age">
+                 <label for="age">Idade</label>
+        </div>
+        <div class="inputGroup">
+            <input type="text" ngModel="" name="about" id="about">
+                <label for="about">Sobre</label>
+        </div>
+        <p>Trilha de estudos</p>
+        <select class="bg-[blue] rounded-[1rem] w-[8rem] h-[2rem]" ngModel='Programação' name="role">
+            <option value="Programação">Programação</option>
+            <option value="Design">Design</option>
+            <option value="Games">Games</option>
+        </select>
+
+        <input class="mb-2 w-[12rem] h-[2rem] bg-[red] radius rounded-[12px] pl-2" type="text" ngModel=""
+            placeholder="Foto" name="photoUrl" id="">
+        <input class="mb-2 w-[12rem] h-[2rem] bg-[red] radius rounded-[12px] pl-2" type="text" ngModel=""
+            placeholder="Vídeo" name="videoUrl" id="">
+
+        <p>Nível lógica de programação</p>
+        <select class="bg-[blue] rounded-[1rem] w-[8rem] h-[2rem]" ngModel="Não tem" name="logicaDeProgramacao">
+            <option value="Não tem">Não tem</option>
+            <option value="Nivel 1">Nivel 1</option>
+            <option value="Nivel 2">Nivel 2</option>
+            <option value="Nivel 3">Nivel 3</option>
+        </select>
+        <button (click)="register()" class="mb-10 mt-4">Registrar</button>
+        <button (click)="cancel()">Cancelar</button>
+    </form>
+</section>

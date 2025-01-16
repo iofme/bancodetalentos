@@ -1,0 +1,16 @@
+<section class="section-login">
+    <p class="absolute top-2 left-5 text-[5rem] text-white" routerLink="">&#8592;</p>
+
+    
+    <div class="container-login">
+        <div class="logo-text">
+            <img src="LOGO.svg" alt="">
+            <h2>Bem vindo</h2>
+        </div>
+        <form  #loginForm="ngForm" (ngSubmit)="login()" action="" class="box-login">
+            <input name="userName"  type="text" [(ngModel)]="user.userName" class="box" placeholder="User">
+            <input name="password" type="password" class="box" [(ngModel)]="user.password" placeholder="Senha">
+            <button type="submit" class="box-confirm">Login</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+<div class="flex justify-end items-center gap-6 mr-6 mt-6">
+    @if(accountService.currentUser()){
+    <p>Bem vindo {{accountService.currentUser()?.username}}</p>
+    <button (click)="accountService.logout()">Sair</button>
+
+    @if (accountService.roles().includes('Admin')) {
+    <button routerLink="admin/register">Registrar</button>}
+    
+    @else {
+    <button routerLink="user/edit">Editar</button>
+    }
+    
+    }@else {
+    <button routerLink="login">Login</button>
+    }
+</div>

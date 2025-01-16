@@ -1,0 +1,36 @@
+<section>
+    @if (member) {
+    <form #editForm="ngForm" id="editForm" (ngSubmit)="saveChanges()" class="flex flex-col items-center">
+        @if (editForm.dirty) {
+            <p>Tem alterações a serem salvas!</p>
+        }
+        <img class="w-[161px] h-[161px] rounded-full mb-8" src="{{member.photoUrl || './user.png'}}" alt="">
+        <p class="mb-2 normal-case">{{member.userName}}</p>
+
+        <p class="mb-2">{{member.age}}</p>
+
+        <p>Trilha de estudos</p>
+        <select class="bg-[blue] rounded-[1rem] w-[8rem] h-[2rem]" ngModel='Programação' name="role">
+            <option value="Programação">Programação</option>
+            <option value="Design">Design</option>
+            <option value="Games">Games</option>
+        </select>
+
+        <p>Nível lógica de programação</p>
+        <select class="bg-[blue] rounded-[1rem] w-[8rem] h-[2rem]" ngModel="Não tem" name="logicaDeProgramacao">
+            <option value="Não tem">Não tem</option>
+            <option value="Nivel 1">Nivel 1</option>
+            <option value="Nivel 2">Nivel 2</option>
+            <option value="Nivel 3">Nivel 3</option>
+        </select>
+
+        <textarea class="w-[700px] normal-case" name="about" rows="6" [(ngModel)]="member.about"></textarea>
+        <button type="submit" class="w-[45px] bg-[#030303] text-white" form="editForm">Salvar</button>
+
+    </form>
+    }
+    @else {
+    <h1>Ocorreu algum problema, olhe o console para mais informações</h1>
+    }
+
+</section>

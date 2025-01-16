@@ -1,0 +1,38 @@
+<section class="flex gap-12">
+    <div class="flex flex-col w-[100%]">
+        <div class="flex justify-center pt-12">
+            <select id="filtro" [(ngModel)]="filtro" name="filtro">
+                <option value="Programação">Programação</option>
+                <option value="Design">Design</option>
+                <option value="Games">Games</option>
+            </select>
+            <button (click)="loadMember()">Aplicar filtro</button>
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <div class="flex gap-8 justify-start flex-wrap p-8 w-[100%]" pagination-template>
+            @for (members of members| paginate: { itemsPerPage: 4, currentPage: p, }; track members.id) {
+            <div class="card">
+                <div class="info-people">
+                    <img class="img-person" src="{{members.photoUrl || './user.png'}} " alt="">
+                    <div class="info">
+                        <p class="name normal-case">{{members.userName}}</p>
+                        <p class="normal-case">{{members.role}}</p>
+                        <p>{{members.age}}</p>
+                    </div>
+                </div>
+                <p class="about normal-case">{{members.about}}</p>
+                <div class="flex items-center gap-6">
+                    <button routerLink="/especifico/{{members.userName}}">Mais informações</button>
+                    @if (accountService.roles().includes('Admin') ) {
+                    <img src="editar.png" class="w-10 h-10 p-[5px] bg-[#016585] rounded-[12px]"
+                        routerLink="admin/edit/{{members.userName}}" alt="">
+
+                    <img class="w-10 h-10 p-1  bg-[#016585] rounded-[12px]" src="excluir.png"
+                        (click)="deleteUser(members)">
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
