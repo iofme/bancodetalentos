@@ -43,7 +43,7 @@ export class AccountService {
     return this.http.get<User>(this.baseUrl + 'user/' + username, this.getHttpOpitions())
   }
 
-  updateUser(user: any) {
+  updateUser(user: Member) {
     return this.http.put(this.baseUrl + 'user', user)
   }
 

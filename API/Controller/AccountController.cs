@@ -32,6 +32,7 @@ namespace API.Controller
             {
                 Username = user.UserName,
                 Token = await tokenService.CreateToken(user),
+                Role = user.Role
             };
 
         }
@@ -51,7 +52,8 @@ namespace API.Controller
             return new UserDto
             {
                 Username = user.UserName,
-                Token = await tokenService.CreateToken(user)
+                Token = await tokenService.CreateToken(user),
+                Role = user.Role
             };
 
         }

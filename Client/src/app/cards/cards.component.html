@@ -1,16 +1,29 @@
 <section class="flex gap-12">
     <div class="flex flex-col w-[100%]">
-        <div class="flex justify-center pt-12">
-            <select id="filtro" [(ngModel)]="filtro" name="filtro">
-                <option value="Programação">Programação</option>
-                <option value="Design">Design</option>
-                <option value="Games">Games</option>
-            </select>
-            <button (click)="loadMember()">Aplicar filtro</button>
+        <form #form="ngForm" (ngSubmit)="loadMember()">
+            <div>
+                <select name="role" [(ngModel)]="userParams.role">
+                    @for (role of roleList; track role.value) {
+                        <option [value]="role.value">
+                            {{role.display}}
+                        </option>
+                    }
+                </select>
+            </div>
+            <button type="submit">Aplicar filtro</button>
+        </form>
+        @if (memberService.paginatedResult()?.pagination) {
+        <div class="flex justify-center">
+            <pagination [boundaryLinks]="true" [totalItems]="memberService.paginatedResult()?.pagination!.totalItems"
+                [itemsPerPage]="memberService.paginatedResult()?.pagination!.itemsPerPage"
+                (pageChanged)="pageChanged($event)" [maxSize]="10" previousText="&lsaquo;" nextText="&rsaquo;"
+                firstText="&laquo;" lastText="&raquo;">
+
+            </pagination>
         </div>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        }
         <div class="flex gap-8 justify-start flex-wrap p-8 w-[100%]" pagination-template>
-            @for (members of members| paginate: { itemsPerPage: 4, currentPage: p, }; track members.id) {
+            @for (members of memberService.paginatedResult()?.items; track members.id) {
             <div class="card">
                 <div class="info-people">
                     <img class="img-person" src="{{members.photoUrl || './user.png'}} " alt="">

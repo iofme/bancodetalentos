@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
 using API.Extension;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,9 +18,15 @@ namespace API.Data
         }
         
 
-        public async Task<IEnumerable<Users>> GetUsersAsync()
+        public async Task<PagedList<Users>> GetUsersAsync(UserParams userParams)
         {
-            return await context.Users.Where(x => x.NormalizedUserName != "ADMIN").ToListAsync();
+            var query = context.Users.Where(x => x.NormalizedUserName != "ADMIN").AsQueryable();
+
+            if(userParams.Role != null){
+                query = query.Where(x => x.Role == userParams.Role);
+            }
+
+            return await PagedList<Users>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
         public Task<Users?> GetUsersByID(int id)

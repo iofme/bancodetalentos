@@ -1,73 +1,100 @@
-.rotating-parent {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    transform: rotate(45deg);
-    transform-origin: center;
-    display: flex;
-    justify-content: center;
-    display: none;
-    align-items: center;
-    animation: deg 10s linear forwards;
-  }
-  
-  @keyframes deg {
-    0%{
-        display: flex;
-    }
-    100%{
-        display: flex;
-    }
+.loader{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: #0a3645;
+  align-items: center;
+  justify-content: center;
+}
+.glitch {
+  position: relative;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: 5px;
+  z-index: 1;
+  animation: shift 1s ease-in-out infinite alternate;
+}
+
+.glitch:before,
+.glitch:after {
+  display: block;
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.glitch:before {
+  animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  color: #8b00ff;
+  z-index: -1;
+}
+
+.glitch:after {
+  animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+  color: #00e571;
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
   }
 
-  /* Div Filha com animação de clip-path */
-  .animated-div {
-    position: relative;
-    width: 100%;
-    padding:1000px;
-    height: 100%;
-    background-color: green;
-    display: none;
-    animation: clip-diagonal 10s linear forwards;
-  }
-  
-  /* Animação com clip-path */
-  @keyframes clip-diagonal {
-    0% {
-        display: flex;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-    100% {
-        display: flex;
-      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
+  20% {
+    transform: translate(-3px, 3px);
   }
 
-  .teste-animate{
-    width: 0px;
-    height: 0px;
-    box-shadow: 510px 400px 10px 50px;
+  40% {
+    transform: translate(-3px, -3px);
   }
-  .teste-animate2{
-    width: 0px;
-    height: 0px;
-    box-shadow: 610px 400px 10px 50px;
+
+  60% {
+    transform: translate(3px, 3px);
   }
-  .teste-animate3{
-    width: 0px;
-    height: 0px;
-    box-shadow: 710px 400px 10px 50px;
+
+  80% {
+    transform: translate(3px, -3px);
   }
-  .teste-animate4{
-    width: 0px;
-    height: 0px;
-    box-shadow: 810px 400px 10px 50px;
+
+  to {
+    transform: translate(0);
   }
-  .teste-animate5{
-    width: 50px;
-    height: 50px;
-    box-shadow: 900px 400px 10px;
-    border-radius: 38px;
+}
+
+@keyframes shift {
+  0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+    transform: skewX(0deg);
   }
+
+  41% {
+    transform: skewX(10deg);
+  }
+
+  42% {
+    transform: skewX(-10deg);
+  }
+
+  59% {
+    transform: skewX(40deg) skewY(10deg);
+  }
+
+  60% {
+    transform: skewX(-40deg) skewY(-10deg);
+  }
+
+  63% {
+    transform: skewX(10deg) skewY(-5deg);
+  }
+
+  70% {
+    transform: skewX(-50deg) skewY(-20deg);
+  }
+
+  71% {
+    transform: skewX(10deg) skewY(-10deg);
+  }
+}
