@@ -15,7 +15,7 @@ namespace API.DTOs
         public required string Password { get; set; } = string.Empty;
         public required string About { get; set; }
         public required string Role { get; set; }
-        public required DateOnly Age { get; set; }
+        public string? DateOfBirth { get; set; }
         public string? PhotoUrl { get; set; }
         public string? VideoUrl { get; set; }
         public required string LogicaDeProgramacao { get; set; }

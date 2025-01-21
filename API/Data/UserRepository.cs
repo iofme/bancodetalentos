@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Extension;
 using API.Helpers;
 using API.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class UserRepository(DataContext context ) : IUserRepository
+    public class UserRepository(DataContext context, IMapper mapper ) : IUserRepository
     {
         public async Task<Users?> GetUserById(int id)
         {
@@ -18,7 +21,7 @@ namespace API.Data
         }
         
 
-        public async Task<PagedList<Users>> GetUsersAsync(UserParams userParams)
+        public async Task<PagedList<EducandosDto>> GetUsersAsync(UserParams userParams)
         {
             var query = context.Users.Where(x => x.NormalizedUserName != "ADMIN").AsQueryable();
 
@@ -26,7 +29,7 @@ namespace API.Data
                 query = query.Where(x => x.Role == userParams.Role);
             }
 
-            return await PagedList<Users>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+            return await PagedList<EducandosDto>.CreateAsync(query.ProjectTo<EducandosDto>(mapper.ConfigurationProvider), userParams.PageNumber, userParams.PageSize);
         }
 
         public Task<Users?> GetUsersByID(int id)

@@ -13,13 +13,15 @@ namespace API.Controller
     public class UserController(IUserRepository repository, IMapper mapper) : BaseApiController
     {
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers([FromQuery]UserParams userParams)
+        public async Task<ActionResult<IEnumerable<EducandosDto>>> GetUsers([FromQuery]UserParams userParams)
         {
             var users = await repository.GetUsersAsync(userParams);
 
             Response.AddPaginationHeader(users);
 
-            return Ok(users);
+            var usersToReturn = mapper.Map<IEnumerable<EducandosDto>>(users);
+
+            return Ok(usersToReturn);
         }
 
 

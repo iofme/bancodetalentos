@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using API.Extension;
 using Microsoft.AspNetCore.Identity;
 
 namespace API.Entities
@@ -15,9 +12,5 @@ namespace API.Entities
         public string? VideoUrl { get; set; }
         public ICollection<UserRole> UserRoles { get; set; } = [];
         public string? LogicaDeProgramacao { get; set; }
-
-        public int Age => DateOnly.FromDateTime(DateTime.UtcNow).Year - DateOfBirth.Year
-                   - (DateOnly.FromDateTime(DateTime.UtcNow) < DateOfBirth.AddYears(DateOnly.FromDateTime(DateTime.UtcNow).Year - DateOfBirth.Year) ? 1 : 0);
-
     }
 }
